@@ -1,8 +1,8 @@
 import urllib
 import json
-import VK
+import VK as VK_module
 
-class Request(object):
+class VK(object):
 	__items = {}
 	__params = {}
 
@@ -40,7 +40,7 @@ class Request(object):
 		return self
 
 	def append(self, data, value = None):
-		if isinstance(data, VK.Root.Root):
+		if isinstance(data, VK_module.Root.Root):
 			self.__items[ str(data.id) ] = data
 		elif isinstance(data, list):
 			list(self.append(item) for item in data)

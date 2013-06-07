@@ -1,6 +1,7 @@
-from VK.Request import Request
+import VK
+from VK.Base import VK
 
-class Root(Request):
+class Root(VK):
 	__collections = {}
 
 	def __init__(self, id, data = {}):

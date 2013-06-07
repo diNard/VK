@@ -1,7 +1,7 @@
 import VK
-from VK.Request import Request
+from VK.Base import VK
 
-class Collection(Request):
+class Collection(VK):
 	__keys = []
 	__items = {}
 
