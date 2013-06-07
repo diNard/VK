@@ -26,7 +26,7 @@ class VK(object):
 		response = urllib.urlopen('https://api.vk.com/method/%s?%s' % (method, url_params)).read()
 		return json.loads(response)['response']
 
-	# ========== PUBLIC ===============
+	# ========== Public ===============
 
 	def load(self):
 		self.__need_load = True
