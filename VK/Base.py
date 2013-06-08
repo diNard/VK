@@ -12,13 +12,17 @@ class VK(object):
         if (self.__need_load == True) and (self.__loaded == False):
             settings = self._init_load_()
             
-            method = settings[0] or ''
-            params = dict( (settings[1] or {}).items() + self.__params.items() )
-            callback = settings[2] or (lambda result: result)
+            # Some models not return list but call their own function for init data
+            # Example: VK.User init VK.Users, get a collection with one item and
+            # then copy data of that item to its self.
+            if isinstance(settings, list):
+                method = settings[0] or ''
+                params = dict( (settings[1] or {}).items() + self.__params.items() )
+                callback = settings[2] or (lambda result: result)
 
-            response = self.__request(method, params)
-            self.__items = callback(response)
-            self.__loaded = True
+                response = self.__request(method, params)
+                self.__items = callback(response)
+                self.__loaded = True
 
     def __request(self, method, params):
         url_params = "&".join( list("%s=%s" % (str(key), str(params[key])) for key in params) )

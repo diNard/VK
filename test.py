@@ -105,13 +105,13 @@ user.friends.friends.load({page: pageId})
 """
 import VK
 n = VK.User(4908613)
-n.set('sex', 'FUCK YOU1').set({'first_name': 'Ala'})
+n.set('number', '007').set({'first_name': 'Viktor'})
 print ' --- '
 print n.first_name
 
 print n.ggfdf
 
-print n.sex
+print n.number
 
 tst = n.friends.limit(3).filter('offset', 40).load()
 for k in tst:
