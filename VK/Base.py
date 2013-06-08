@@ -10,16 +10,22 @@ class VK(object):
         self.__need_load = False
         self.__loaded = False
         self.__collections = {}
+        self.__ready_collections = {}
 
         if "_init_collections_" in dir(self):
             self.__collections = self._init_collections_()
 
     def __getattr__(self, name):
+        name = str(name)
         self.__load()
+
         if self.__items.has_key(name):
             return self.__items[name]
+        elif name in self.__ready_collections:
+            return self.__ready_collections[name]
         elif name in self.__collections:
-            return self.__collections[name]()
+            self.__ready_collections[name] = self.__collections[name]()
+            return self.__ready_collections[name]
 
     def __load(self):
         if (self.__need_load == True) and (self.__loaded == False):
