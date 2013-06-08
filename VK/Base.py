@@ -3,10 +3,12 @@ import json
 import VK as VK_module
 
 class VK(object):
-    __items = {}
-    __params = {}
-    __need_load = False
-    __loaded = False
+
+    def __init__(self):
+        self.__items = {}
+        self.__params = {}
+        self.__need_load = False
+        self.__loaded = False
 
     def __load(self):
         if (self.__need_load == True) and (self.__loaded == False):
@@ -26,6 +28,7 @@ class VK(object):
 
     def __request(self, method, params):
         url_params = "&".join( list("%s=%s" % (str(key), str(params[key])) for key in params) )
+        print 'https://api.vk.com/method/%s?%s' % (method, url_params)
         response = urllib.urlopen('https://api.vk.com/method/%s?%s' % (method, url_params)).read()
         return json.loads(response)['response']
 
@@ -50,6 +53,10 @@ class VK(object):
             self.__items = dict(self.__items.items() + data.items())
         elif isinstance(data, basestring) or isinstance(data, (int, long)):
             self.__items[ str(data) ] = value
+        return self
+
+    def clear(self):
+        self.__items = {}
         return self
 
     def get_keys(self):

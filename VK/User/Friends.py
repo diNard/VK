@@ -11,6 +11,6 @@ class Friends(Collection):
     def _init_load_(self):
         return [
             'friends.get',
-            {'uid' : self.get_keys()[0], 'order': 'name', 'fields' : ','.join(self.__fields)},
+            {'uid' : self.parent().id, 'order': 'name', 'fields' : ','.join(self.__fields)},
             (lambda response: dict((user['uid'], VK.User(user['uid'], user)) for user in response))
         ]

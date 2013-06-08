@@ -1,5 +1,6 @@
 from VK.Root import Root
 from VK.User.Friends import Friends
+from VK.Subscriptions import Subscriptions
 
 class User(Root):
 
@@ -9,5 +10,8 @@ class User(Root):
 
     def _init_collections_(self):
         return {
-            'friends': lambda: Friends().append(self).load()
+            'friends': lambda: Friends().parent(self).load(),
+            'subscriptions': lambda: Subscriptions().parent(self).load()
         }
+
+# users.isAppUser : no access : current

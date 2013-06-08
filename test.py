@@ -113,12 +113,16 @@ print n.ggfdf
 
 print n.number
 
-tst = n.friends.limit(3).filter('offset', 40).load()
+tst = n.friends.limit(3).filter('offset', 2).filter('name_case', 'dat').load()
 for k in tst:
 	print k.first_name
 
 for j in tst:
 	print j.last_name
+
+for gr in n.subscriptions.limit(5).groups:
+	print gr.name
+	
 """
 user = VK.User(1)
 users = VK.Users().add(user).add(VK.User(2)).load()

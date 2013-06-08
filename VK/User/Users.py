@@ -16,3 +16,5 @@ class Users(Collection):
             {'uids' : ','.join(self.get_keys()), 'order': 'name', 'fields' : ','.join(self.__fields)},
             (lambda response: dict((user['uid'], VK.User(user['uid'], user)) for user in response))
         ]
+
+# users.search : no access

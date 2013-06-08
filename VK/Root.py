@@ -5,6 +5,7 @@ class Root(VK):
     __collections = {}
 
     def __init__(self, id, data = {}):
+        super(Root, self).__init__()
         self.id = id
         self.append(data)
         self.__collections = self._init_collections_()
