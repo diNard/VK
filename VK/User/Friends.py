@@ -2,6 +2,7 @@ import VK
 from VK.Collection import Collection
 
 class Friends(Collection):
+    
     __fields = [
         'uid', 'first_name', 'last_name', 'sex', 'bdate',
         'city', 'country', 'timezone', 'photo', 'photo_medium',

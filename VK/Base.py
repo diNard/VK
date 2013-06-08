@@ -7,8 +7,7 @@ class VK(object):
     def __init__(self):
         self.__items = {}
         self.__params = {}
-        self.__need_load = False
-        self.__loaded = False
+        self.__loaded = True
         self.__collections = {}
         self.__ready_collections = {}
 
@@ -28,7 +27,7 @@ class VK(object):
             return self.__ready_collections[name]
 
     def __load(self):
-        if (self.__need_load == True) and (self.__loaded == False):
+        if self.__loaded == False:
             settings = self._init_load_()
             
             # Some models not return list but call their own function for init data
@@ -52,8 +51,11 @@ class VK(object):
 
 
     def load(self):
-        self.__need_load = True
+        self.__loaded = False
         return self
+
+    def request(self, method, params):
+        return self.__request(method, params)
 
     def filter(self, data, value):
         if isinstance(data, basestring) or isinstance(data, (int, long)):

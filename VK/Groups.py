@@ -10,7 +10,7 @@ class Groups(Collection):
 
     def _init_load_(self):
         return [
-            'groups.get',
-            {'uid' : self.id, 'extended': '1', 'fields' : ','.join(self.__fields)},
-            (lambda response: dict((user['uid'], VK.User(user['uid'], user)) for user in response))
+            'groups.getById',
+            {'gids' : ','.join(self.get_keys()), 'fields' : ','.join(self.__fields)},
+            (lambda response: dict((group['gid'], VK.Group.Group(group['gid'], group)) for group in response))
         ]
