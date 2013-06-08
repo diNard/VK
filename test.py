@@ -119,10 +119,13 @@ for k in tst:
 
 for j in tst:
 	print j.last_name
-
-for gr in n.subscriptions.limit(5).groups:
+"""
+for gr in n.subscriptions.groups:
 	print gr.name
-	
+"""
+for us in n.subscriptions.filter('count', 50).users:
+	print us.first_name
+
 """
 user = VK.User(1)
 users = VK.Users().add(user).add(VK.User(2)).load()

@@ -5,10 +5,12 @@ from VK.Group import Group
 from VK.User.Users import Users
 
 class Subscriptions(Collection):
-    __counts = {'users': None, 'groups': None}
 
-    def _init_children_():
-        return ['users', 'groups']
+    def _init_collections_(self):
+        return {
+            'groups': lambda: self.__response['groups'],
+            'users': lambda: self.__response['users']
+        }
 
     def _init_load_(self):
         return [
@@ -18,8 +20,10 @@ class Subscriptions(Collection):
         ]
 
     def _callback_(self, response):
-        self.__response['users'] = Users()
-        self.__response['groups'] = Groups()
+        self.__response = {
+            'users': Users(),
+            'groups': Groups()
+        }
 
         if 'users' in response:
             self.__separately(response)
