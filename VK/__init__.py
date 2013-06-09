@@ -6,7 +6,7 @@ import VK.Group
 """
 All submodules have __init.py with:
 - __all__ where listed all modules
-- commands "import" one by one module for export classes, not modules.
+- commands "import" one by one module for exporting out classes, nor modules.
 
 Therefore import VK.Module_name will import all classes from this module.
 
