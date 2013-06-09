@@ -1,4 +1,6 @@
-from VK.User.User import User
-from VK.User.Friends import Friends
+__all__ = ["Base", "Root", "Collection", "Error"]
 
-from VK.User.Users import Users
+#from VK.User import *
+import VK.User
+import VK.Group
+print dir()

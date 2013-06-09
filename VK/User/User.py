@@ -1,9 +1,5 @@
 from VK.Root import Root
-from VK.User.Users import Users
-from VK.User.Friends import Friends
-from VK.Subscriptions import Subscriptions
-from VK.User.Followers import Followers
-from VK.User.Groups import Groups as User_groups
+import VK.User
 
 class User(Root):
 
@@ -13,10 +9,10 @@ class User(Root):
 
     def _init_collections_(self):
         return {
-            'friends': lambda: Friends().parent(self).load(),
-            'subscriptions': lambda: Subscriptions().parent(self).load(),
-            'followers': lambda: Followers().parent(self).load(),
-            'groups': lambda: User_groups().parent(self).load()
+            'friends': lambda: VK.User.Friends().parent(self).load(),
+            'subscriptions': lambda: VK.User.Subscriptions().parent(self).load(),
+            'followers': lambda: VK.User.Followers().parent(self).load(),
+            'groups': lambda: VK.User.Groups().parent(self).load()
         }
 
 # users.isAppUser : no access token : current

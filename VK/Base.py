@@ -1,8 +1,9 @@
 import urllib
 import json
-import VK as VK_module
+from VK.Error import Error
 
-class VK(object):
+class Base(object):
+    error = None
 
     def __init__(self):
         self.__items = {}
@@ -41,13 +42,18 @@ class VK(object):
                 callback = settings[2] or (lambda result: result)
 
                 response = self.__request(method, params)
-                self.__items = callback(response)
+                if not (response == []):
+                    self.__items = callback(response)
 
     def __request(self, method, params):
         url_params = "&".join( list("%s=%s" % (str(key), str(params[key])) for key in params) )
         print 'https://api.vk.com/method/%s?%s' % (method, url_params)
         response = urllib.urlopen('https://api.vk.com/method/%s?%s' % (method, url_params)).read()
-        return json.loads(response)['response']
+        response = json.loads(response)
+        if response.has_key('response'):
+            return response['response']
+        else:
+            raise Error(response['error']['error_code'], response['error']['error_msg'])
 
 
     def load(self):
@@ -65,7 +71,7 @@ class VK(object):
         return self
 
     def append(self, data, value = None):
-        if isinstance(data, VK_module.Root.Root):
+        if isinstance(data, Base):
             self.__items[ str(data.id) ] = data
         elif isinstance(data, list):
             list(self.append(item) for item in data)

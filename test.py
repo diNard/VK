@@ -1,7 +1,7 @@
-def show_friends_list(data):
+def show_friends_list(friends):
 	c = ''
-	for user in data:
-		c += "<tr><td><img src='%s'></td><td>%s %s #%s" %(user['photo'], user['first_name'], user['last_name'], user['uid'])
+	for user in friends:
+		c += "<tr><td><img src='%s'></td><td>%s %s #%s" %(user.photo, user.first_name, user.last_name, user.uid)
 	return c
 
 def show_album_list(data):
@@ -19,13 +19,11 @@ def show_notes(data):
 			c += "<tr><td>" + note['text'] + "</td><td>Comments: " + str(note['comments']['count']) + "</td><td> Likes:" + str(note['likes']['count']) + "</td></tr>"
 	return c
 # -------------------------------------------------
-
-#import pycurl
-
+"""
 import codecs
  
-# Get Friends list from Tatia
-#data_str = urllib.urlopen('https://api.vk.com/method/friends.get?uid=4413027&count=200&fields=uid,first_name,last_name,photo&order=name').read()
+import VK
+n = VK.User(4413027)
 
 # Get albums list from Vika
 #data_str = urllib.urlopen('https://api.vk.com/method/photos.getAlbums?oid=5855694&need_covers=1').read()
@@ -36,15 +34,17 @@ import codecs
 #data = json.loads(data_str)['response']
 
 a = '<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8" /></head><body><table>'
-#a += show_friends_list(data)
+a += show_friends_list(n.friends.limit(20))
 #a += show_album_list(data)
 #a += show_notes(data)
 a += '</table></body></html>'
 
 
-#file = codecs.open("lol.html", "w", "utf-8")
-#file.write(a)
-#file.close()
+file = codecs.open("lol.html", "w", "utf-8")
+file.write(a)
+file.close()
+"""
+
 """
 
 photo = photo.likes.load()
@@ -104,7 +104,7 @@ user.friends.friends.allowed_count()
 user.friends.friends.load({page: pageId})
 """
 import VK
-n = VK.User(4908613)
+n = VK.User.User(4908613)
 n.set('number', '007').set({'first_name': 'Viktor'})
 print ' --- '
 print n.first_name
@@ -119,21 +119,21 @@ for k in tst:
 
 for j in tst:
 	print j.last_name
-"""
+
 for gr in n.subscriptions.filter('count', 50).groups:
 	print gr.name
  
 for us in n.subscriptions.users:
 	print us.first_name
-"""
-"""
+
 print ' ---- Followers --- '
 for foll in n.followers.load().limit(5):
 	print foll.first_name
-"""
 
 gr = VK.Group.Group(11375758)
 print gr.is_member(n)
+
+grs = n.groups.get_items()
 
 
 """

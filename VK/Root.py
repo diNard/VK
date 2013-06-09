@@ -1,7 +1,6 @@
-import VK
-from VK.Base import VK
+from VK.Base import Base
 
-class Root(VK):
+class Root(Base):
 
     def __init__(self, id, data = {}):
         super(Root, self).__init__()

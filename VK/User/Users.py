@@ -1,5 +1,5 @@
-import VK
 from VK.Collection import Collection
+from VK.User import User
 
 class Users(Collection):
     __fields = [
@@ -14,7 +14,7 @@ class Users(Collection):
         return [
             'users.get',
             {'uids' : ','.join(self.get_keys()), 'order': 'name', 'fields' : ','.join(self.__fields)},
-            (lambda response: dict((user['uid'], VK.User(user['uid'], user)) for user in response))
+            (lambda response: dict((user['uid'], User(user['uid'], user)) for user in response))
         ]
 
 # users.search : no access

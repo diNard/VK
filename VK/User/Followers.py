@@ -1,5 +1,5 @@
-import VK
-from VK.User.Users import Users
+from VK.User import Users
+from VK.User import User
 
 class Followers(Users):
     _fields = ['nickname', 'screen_name', 'sex', 'bdate',
@@ -10,5 +10,5 @@ class Followers(Users):
         return [
             'users.getFollowers',
             {'uid' : self.parent().id,  'fields' : ','.join(self._fields)},
-            (lambda response: dict((user['uid'], VK.User(user['uid'], user)) for user in response['items']))
+            (lambda response: dict((user['uid'], User(user['uid'], user)) for user in response['items']))
         ]

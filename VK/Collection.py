@@ -1,8 +1,6 @@
-import VK
-from VK.Root import Root
-from VK.Base import VK
+from VK.Base import Base
 
-class Collection(VK):
+class Collection(Base):
     
     def __init__(self):
         super(Collection, self).__init__()
@@ -26,7 +24,7 @@ class Collection(VK):
         return self.filter('count', count)
 
     def parent(self, parent = False):
-        if isinstance(parent, Root):
+        if isinstance(parent, Base):
             self.__parent = parent
             return self
         else:

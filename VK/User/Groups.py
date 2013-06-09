@@ -1,6 +1,7 @@
-import VK
+from VK.Group import Groups
+from VK.Group import Group
 
-class Groups(VK.Groups.Groups):
+class Groups(Groups):
     __fields = [
         'city', 'country', 'place', 'description', 'wiki_page', 'members_count',
         'counters', 'start_date', 'end_date', 'can_post', 'can_see_all_posts',
@@ -11,7 +12,7 @@ class Groups(VK.Groups.Groups):
         return [
             'groups.get',
             {'uid' : self.parent().id,  'extended': '1', 'fields' : ','.join(self.__fields)},
-            (lambda response: dict((group['gid'], VK.Group(group['gid'], group)) for group in response[1,]))
+            (lambda response: dict((group['gid'], Group(group['gid'], group)) for group in response[1,]))
         ]
 
     def groups():

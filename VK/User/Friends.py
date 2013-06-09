@@ -1,5 +1,5 @@
-import VK
 from VK.Collection import Collection
+from VK.User import User
 
 class Friends(Collection):
     
@@ -13,5 +13,5 @@ class Friends(Collection):
         return [
             'friends.get',
             {'uid' : self.parent().id, 'order': 'name', 'fields' : ','.join(self.__fields)},
-            (lambda response: dict((user['uid'], VK.User(user['uid'], user)) for user in response))
+            (lambda response: dict((user['uid'], User(user['uid'], user)) for user in response))
         ]
