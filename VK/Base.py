@@ -3,7 +3,6 @@ import json
 from VK.Error import Error
 
 class Base(object):
-    error = None
 
     def __init__(self):
         self.__items = {}
@@ -52,8 +51,10 @@ class Base(object):
         response = json.loads(response)
         if response.has_key('response'):
             return response['response']
-        else:
+        elif response.has_key('error'):
             raise Error(response['error']['error_code'], response['error']['error_msg'])
+        else:
+            raise Error(0, 'Unknown')
 
 
     def load(self):

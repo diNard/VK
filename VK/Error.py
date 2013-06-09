@@ -1,4 +1,5 @@
 class Error(Exception):
+	
     def __init__(self, code, msg):
         self.__code = code
         self.__msg = msg
