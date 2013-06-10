@@ -2,11 +2,12 @@ from VK.Base import Base
 
 class Collection(Base):
     
-    def __init__(self):
+    def __init__(self, data = []):
         super(Collection, self).__init__()
         self.__keys = []
         self.__items = {}
         self.__parent = None
+        self.append(data)
 
     def __iter__(self):
         self.__items = self.get_items()

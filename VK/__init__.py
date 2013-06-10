@@ -20,3 +20,5 @@ The Collection imports:
 The Object imports:
 - import base Root class (from VK.Root import Root)
 - import all own submodule (import VK.User)
+
+"""
