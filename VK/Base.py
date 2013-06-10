@@ -64,11 +64,19 @@ class Base(object):
     def request(self, method, params):
         return self.__request(method, params)
 
-    def filter(self, data, value):
+    def filter(self, data, value = None):
+        # key, value - just int or string
         if isinstance(data, basestring) or isinstance(data, (int, long)):
+            if not isinstance(value, basestring) and not isinstance(value, (int, long)):
+                value = None
             self.__params[ str(data) ] = value
+        # []
+        elif isinstance(data, list):
+            list(self.filter(item) for item in data)
+        # {}
         elif isinstance(data, dict):
-            self.__params = dict(self.__params.items() + data.items())
+            for k in data:
+                self.filter(k, data[k])
         return self
 
     def get_filters(self):
