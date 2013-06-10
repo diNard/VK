@@ -16,10 +16,10 @@ class Subscriptions(Collection):
         return [
             'users.getSubscriptions',
             {'uid' : self.parent().id, 'extended': '1'},
-            self._callback_
+            self.__callback
         ]
 
-    def _callback_(self, response):
+    def __callback(self, response):
         self.__response = {
             'users': Users(),
             'groups': Groups()

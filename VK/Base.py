@@ -89,6 +89,10 @@ class Base(object):
         self.__items = {}
         return self
 
+    def reset(self):
+        self.__params = {}
+        return self
+
     def get_keys(self):
         return self.__items.keys()
 

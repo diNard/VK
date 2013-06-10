@@ -2,7 +2,6 @@ __all__ = ["Base", "Root", "Collection", "Error"]
 
 import VK.User
 import VK.Group
-import VK.User.Followers
 
 """
 All submodules have __init.py with:

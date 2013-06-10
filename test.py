@@ -113,6 +113,11 @@ print n.ggfdf
 
 print n.number
 
+for st in VK.User.Users([1, 2, 34]).load():
+	print st.first_name
+
+"""
+print ' --- Friends ---- '
 tst = n.friends.limit(3).filter('offset', 2).filter('name_case', 'dat').load()
 for k in tst:
 	print k.first_name
@@ -120,7 +125,8 @@ for k in tst:
 for j in tst:
 	print j.last_name
 
-"""
+""" 
+print ' ---- Subscriptions --- '
 for gr in n.subscriptions.filter('count', 50).groups:
 	print gr.name
  
@@ -128,11 +134,21 @@ for us in n.subscriptions.users:
 	print us.first_name
 
 print ' ---- Followers --- '
-for foll in n.followers.load().limit(5):
+for foll in n.followers.limit(5):
 	print foll.first_name
 
 gr = VK.Group.Group(11375758)
 print gr.is_member(n)
 
 grs = n.groups.get_items()
+"""
+
+
+"""
+user = VK.User(1)
+users = VK.Users().add(user).add(VK.User(2)).load()
+
+for user in users:
+	print user
+
 """
