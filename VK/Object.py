@@ -1,9 +1,9 @@
 from VK.Base import Base
 
-class Root(Base):
+class Object(Base):
 
     def __init__(self, id, data = []):
-        super(Root, self).__init__()
+        super(Object, self).__init__()
         self.id = id
         self.append(data)
 

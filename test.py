@@ -142,7 +142,6 @@ print gr.is_member(n)
 grs = n.groups.get_items()
 
 
-"""
 user = VK.User(1)
 users = VK.Users().add(user).add(VK.User(2)).load()
 

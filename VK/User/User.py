@@ -1,7 +1,7 @@
-from VK.Root import Root
+from VK.Object import Object
 import VK.User
 
-class User(Root):
+class User(Object):
 
     def _init_load_(self):
         _self = Users().append(self).load().get_items()[0]

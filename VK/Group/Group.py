@@ -1,7 +1,7 @@
-from VK.Root import Root
+from VK.Object import Object
 import VK.Group
 
-class Group(Root):
+class Group(Object):
 	
     def _init_load_(self):
         _self = Groups().append(self).load().get_items()[0]
