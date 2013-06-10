@@ -71,6 +71,9 @@ class Base(object):
             self.__params = dict(self.__params.items() + data.items())
         return self
 
+    def get_filters(self):
+        return self.__params
+
     def append(self, data, value = None):
         if isinstance(data, Base):
             self.__items[ str(data.id) ] = data

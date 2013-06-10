@@ -2,6 +2,7 @@ __all__ = ["Base", "Root", "Collection", "Error"]
 
 import VK.User
 import VK.Group
+import VK.User.Followers
 
 """
 All submodules have __init.py with:
@@ -20,3 +21,6 @@ The Collection imports:
 The Object imports:
 - import base Root class (from VK.Root import Root)
 - import all own submodule (import VK.User)
+-----------------------------
+
+"""

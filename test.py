@@ -120,6 +120,7 @@ for k in tst:
 for j in tst:
 	print j.last_name
 
+"""
 for gr in n.subscriptions.filter('count', 50).groups:
 	print gr.name
  
@@ -134,13 +135,4 @@ gr = VK.Group.Group(11375758)
 print gr.is_member(n)
 
 grs = n.groups.get_items()
-
-
-"""
-user = VK.User(1)
-users = VK.Users().add(user).add(VK.User(2)).load()
-
-for user in users:
-	print user
-
 """
