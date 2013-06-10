@@ -64,12 +64,13 @@ class Base(object):
     def request(self, method, params):
         return self.__request(method, params)
 
+    # Filters
     def filter(self, data, value = None):
         # key, value - just int or string
         if isinstance(data, basestring) or isinstance(data, (int, long)):
             if not isinstance(value, basestring) and not isinstance(value, (int, long)):
                 value = None
-            self.__params[ str(data) ] = value
+            self.__params[ str(data).lower() ] = value
         # []
         elif isinstance(data, list):
             list(self.filter(item) for item in data)
@@ -79,9 +80,14 @@ class Base(object):
                 self.filter(k, data[k])
         return self
 
+    def reset(self):
+        self.__params = {}
+        return self
+
     def get_filters(self):
         return self.__params
 
+    # Items
     def append(self, data, value = None):
         if isinstance(data, Base):
             self.__items[ str(data.id) ] = data
@@ -95,10 +101,6 @@ class Base(object):
 
     def clear(self):
         self.__items = {}
-        return self
-
-    def reset(self):
-        self.__params = {}
         return self
 
     def get_keys(self):
