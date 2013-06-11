@@ -9,10 +9,10 @@ class User(Object):
 
     def _init_collections_(self):
         return {
-            'friends': lambda: VK.User.Friends().parent(self).load(),
-            'subscriptions': lambda: VK.User.Subscriptions().parent(self).load(),
-            'followers': lambda: VK.User.Followers().parent(self).load(),
-            'groups': lambda: VK.User.Groups().parent(self).load()
+            'friends': lambda: VK.User.Friends().parent(self),
+            'subscriptions': lambda: VK.User.Subscriptions().parent(self),
+            'followers': lambda: VK.User.Followers().parent(self),
+            'groups': lambda: VK.User.Groups().parent(self)
         }
 
 # users.isAppUser : no access token : current
