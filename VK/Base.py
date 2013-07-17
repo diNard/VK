@@ -23,7 +23,7 @@ class Base(object):
         elif name in self.__ready_collections:
             return self.__ready_collections[name]
         elif name in self.__collections:
-            self.__ready_collections[name] = self.__collections[name]().load()
+            self.__ready_collections[name] = self.__collections[name]().parent(self).load()
             return self.__ready_collections[name]
 
     def __load(self):

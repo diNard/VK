@@ -125,13 +125,14 @@ for k in tst:
 for j in tst:
 	print j.last_name
 
+"""
 print ' ---- Subscriptions --- '
 for gr in n.subscriptions.filter('count', 50).groups:
 	print gr.name
  
 for us in n.subscriptions.users:
 	print us.first_name
-
+"""
 print ' ---- Followers --- '
 for foll in n.followers.limit(5):
 	print foll.first_name
