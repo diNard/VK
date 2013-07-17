@@ -73,7 +73,8 @@ class Base(object):
             self.__params[ str(data).lower() ] = value
         # []
         elif isinstance(data, list):
-            list(self.filter(item) for item in data)
+            for item in data:
+                self.filter(item)
         # {}
         elif isinstance(data, dict):
             for k in data:
