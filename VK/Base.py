@@ -12,7 +12,9 @@ class Base(object):
         self.__ready_collections = {}
 
         if "_init_collections_" in dir(self):
-            self.__collections = self._init_collections_()
+            self.__collections = self._init_collections_
+            if hasattr(self.__collections, '__call__'):
+                self.__collections = self._init_collections_()
 
     def __getattr__(self, name):
         name = str(name)
@@ -28,13 +30,13 @@ class Base(object):
 
     def __load(self):
         if self.__loaded == False:
-            settings = self._init_load_()
-            
-            # Some models not return list but call their own function for init data
-            # Example: VK.User init VK.Users, get a collection with one item and
-            # then copy data of that item to its self.
-            if isinstance(settings, list):
-                self.__loaded = True
+            self.__loaded = True
+
+            if "_init_instance_of_" in dir(self):
+                _self = self._init_instance_of_().append(self).load().get_items().itervalues().next()
+                self.append(_self.get_items())
+            else:
+                settings = self._init_load_()
 
                 method = settings[0] or ''
                 params = dict( (settings[1] or {}).items() + self.__params.items() )

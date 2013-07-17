@@ -10,4 +10,8 @@ class Group(Object):
     # Check whether user is member of the group
     # groups.isMember: no access
     def is_member(self, user):
-    	return self.request('groups.isMember', {'gid': self.id, 'uid': user.id}) == 1
+    	res = self.request('groups.isMember', {'gid': self.id, 'uid': user.id})
+    	if 'member' in res:
+    		
+    	else:
+    		return res == 1
