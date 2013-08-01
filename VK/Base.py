@@ -63,6 +63,11 @@ class Base(object):
         self.__loaded = False
         return self
 
+    def force_load(self):
+        self.__loaded = False
+        self.__load()
+        return self
+
     def request(self, method, params):
         return self.__request(method, params)
 
